@@ -24,7 +24,7 @@
   let chapterTimes = []; // [{time, name, idx}]
 
   function buildIndex(tl) {
-    if (!indexList || !window.CONFIG) return;
+    if (!indexList || typeof CONFIG === "undefined") return; // CONFIG is a top-level const in config.js: bare name works, window.CONFIG does not
     indexList.innerHTML = "";
     chapterTimes = [];
     CONFIG.sections.forEach((s, i) => {
