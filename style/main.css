@@ -737,3 +737,28 @@ body.reading .container, body.reading .bg { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .grain, .bg-drift--far, .bg-drift--mid, .bg-drift--near, .star, .ss-star { animation: none !important; }
 }
+
+/* ═══════════════ v3.1 · HUMAN.md type system ═══════════════
+   Display: Bricolage Grotesque (the reference site's headline face)
+   Serif:   Instrument Serif — its text face, for the poetic lines
+   Mono:    Cutive Mono — its file/HUD face
+   Chinese falls to Noto Serif SC, the closest elegant serif match. */
+:root {
+  --f-display: "Bricolage Grotesque", "Noto Serif SC", serif;
+  --f-serif: "Instrument Serif", "Noto Serif SC", serif;
+  --f-mono: "Cutive Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+body { font-family: var(--f-serif); }
+.greeting-title, .section-announcement p, .countdown-num, .countdown-go,
+.idea-big-letters span, .ss-big, .wish-hbd, .read h1 {
+  font-family: var(--f-display);
+}
+.hbd-chatbox, .idea-line, .quote-text, .ss-line, .gift-reveal, .cake-wish,
+.section-closing p, .greeting-subtitle, .gift-hint, .cake-hint, .index-title {
+  font-family: var(--f-serif);
+}
+.idea-line, .ss-line, .quote-text { letter-spacing: 0.03em; }
+.hud, .index-num, .lock-count, .read-by, .index-item, .ss-hint {
+  font-family: var(--f-mono);
+}
+.greeting-name { letter-spacing: 0.04em; }
