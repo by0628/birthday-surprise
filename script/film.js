@@ -89,6 +89,10 @@
   if (readBtn) readBtn.addEventListener("click", () => {
     const on = document.body.classList.toggle("reading");
     if (window.__tl) { if (on) window.__tl.pause(); else window.__tl.play(); }
+    if (!on && window.__musicOn) {
+      const a = document.querySelector(".song");
+      if (a && a.paused) a.play().catch(() => {});
+    }
     readBtn.textContent = on ? "看影片" : "文字版";
   });
 

@@ -149,7 +149,7 @@ async function initSite() {
   if (!window.gsap) { document.body.classList.add("reading"); return; }
 
   const start = (withMusic) => {
-    if (withMusic && audio) audio.play().catch(() => {});
+    if (withMusic && audio) { window.__musicOn = true; audio.play().catch(() => {}); }
     buildTimeline(rendered);
   };
 
