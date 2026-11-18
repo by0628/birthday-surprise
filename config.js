@@ -64,6 +64,19 @@ const CONFIG = {
         "往後的日子，也請多多指教 <span>✦</span>",
       ],
     },
+    {
+      type: "scrollstory",
+      lines: [
+        "這一幕，不用趕時間。",
+        "你慢慢滑，它慢慢亮起來——",
+        "星星是，月亮是，",
+        "這句話也是。",
+      ],
+      bigWord: "生日快樂",
+      hint: "慢慢往下滑 · 滑到底，點「繼續」",
+      continueText: "繼續 ✦",
+      skipText: "跳過這一幕",
+    },
     { type: "confetti", count: 9 },
     {
       type: "closing",

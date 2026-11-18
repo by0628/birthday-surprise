@@ -89,6 +89,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function initSite() {
+  // Reduced motion: skip the film, offer the quiet reading page
+  // (the same fallback HUMAN.md gives its readers).
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.body.classList.add("reading");
+    return;
+  }
   applyTheme(currentMode);
   createThemeToggle();
 
@@ -148,11 +154,17 @@ async function initSite() {
 // ── Timeline Builder ─────────────────────────────────────────────
 function buildTimeline(rendered) {
   const tl = gsap.timeline();
+  window.__tl = tl;
+  tl.eventCallback("onUpdate", () => {
+    if (window.FilmHUD) FilmHUD.onProgress(tl);
+  });
 
   tl.to(".container", { duration: 0.6, visibility: "visible" });
 
   // Track deferred exits for overlay components
   let deferredExits = [];
+  const wipe = document.getElementById("wipe");
+  let prevWasStage = false;
 
   rendered.forEach(({ el, comp, section }, i) => {
     const isOverlay = comp.overlay === true;
@@ -163,8 +175,22 @@ function buildTimeline(rendered) {
       deferredExits = [];
     }
 
+    // Chapter label (HUD crumb, progress, index seek)
+    tl.addLabel("ch" + i);
+
+    // Mask wipe between stage chapters (HUMAN.md-style mask transition)
+    if (wipe && !isOverlay && prevWasStage) {
+      tl.fromTo(wipe,
+        { clipPath: "inset(0 0 100% 0)", visibility: "visible" },
+        { clipPath: "inset(0 0 0% 0)", duration: 0.2, ease: "power2.inOut" })
+        .to(wipe, {
+          clipPath: "inset(100% 0 0 0)", duration: 0.2, ease: "power2.inOut",
+        }, "+=0.03");
+    }
+
     // Animate
     comp.animate(tl, el, CONFIG);
+    if (!isOverlay) prevWasStage = true;
 
     // Handle exit lifecycle
     if (comp.exit) {
@@ -187,4 +213,7 @@ function buildTimeline(rendered) {
   if (replayBtn) {
     replayBtn.addEventListener("click", () => tl.restart());
   }
+
+  // Publish to the film layer (HUD / index / progress)
+  if (window.FilmHUD) FilmHUD.bind(tl);
 }

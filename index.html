@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-  <title>生日快樂，齐锐欣</title>
+  <title>生日快乐，齐锐欣</title>
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +32,69 @@
     </div>
   </div>
 
+  <!-- Parallax depth background: three fog layers, far ones blurrier -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-layer" data-depth="6"><div class="bg-drift bg-drift--far"></div></div>
+    <div class="bg-layer" data-depth="14"><div class="bg-drift bg-drift--mid"></div></div>
+    <div class="bg-layer" data-depth="26"><div class="bg-drift bg-drift--near"></div></div>
+  </div>
+
+  <!-- Film grain -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- HUD (HUMAN.md style): restart cake, file pill, chapter crumb -->
+  <header class="hud" aria-hidden="true">
+    <div class="hud-l">
+      <button class="hud-home" id="hud-home" type="button" tabindex="-1">🎂</button>
+      <span class="pill" id="hud-file">BIRTHDAY.md</span>
+      <span class="pill hud-crumb"><span id="hud-crumb">開場</span></span>
+    </div>
+    <div class="hud-r">
+      <button class="pill hud-btn" id="hud-read" type="button" tabindex="-1">文字版</button>
+      <button class="pill hud-btn" id="hud-index-btn" type="button" tabindex="-1">目錄</button>
+    </div>
+  </header>
+  <div class="hud-progress" aria-hidden="true"><i id="hud-bar"></i></div>
+
+  <!-- Chapter index -->
+  <nav id="index-overlay" hidden aria-hidden="true">
+    <div class="index-card">
+      <p class="index-title">目錄 · BIRTHDAY.md</p>
+      <div id="index-list"></div>
+      <button class="index-close" id="index-close" type="button">關閉</button>
+    </div>
+  </nav>
+
+  <!-- Mask wipe between chapters -->
+  <div id="wipe" aria-hidden="true"></div>
+
+  <!-- Easter egg toast -->
+  <div id="egg-toast" hidden>彩蛋 ✦ 今年的第一份好運，先給你。</div>
+
+  <!-- Plain-text reading version: the file under the film.
+       Screen readers and reduced-motion visitors get this. -->
+  <article id="read" class="read">
+    <header>
+      <p class="read-by">FOR 齐锐欣 (QRX) · NOV 19</p>
+      <h1>BIRTHDAY.md</h1>
+      <blockquote>
+        <p>&gt; 一份生日驚喜。慢慢看，不趕時間。</p>
+        <p>&gt; 今天，是屬於你的日子。</p>
+      </blockquote>
+    </header>
+    <h2>## 今天，是你的生日</h2>
+    <p>生日快樂。願新的一歲裡，開心像晨光一樣多一點，煩惱像薄霧一樣少一點。那些你悄悄想要的，不必急著追，也終會在某個不經意的轉彎處，慢慢靠近你。</p>
+    <h2>## 心裡話</h2>
+    <p>我原本想，只說一句生日快樂就好。可是話到了嘴邊，又停住了。總想著，要給你一點特別的。因為——你本就是，特別的那一個 ✦</p>
+    <p>禮物不大——只是一整年的好運，都給你。</p>
+    <p>願歲月溫柔待你，願你眼裡，永遠有光。</p>
+    <h2>## 許個願吧</h2>
+    <p>願望收好了。它會在新的一歲裡，悄悄實現。</p>
+    <p>有人說，生日不過是普通的一天。可是因為你，它變得不普通了。往後的日子，也請多多指教 ✦</p>
+    <hr />
+    <p>好了，回去告訴我——這個小驚喜，你喜不喜歡。</p>
+  </article>
+
   <!-- All sections are rendered here dynamically from config.js -->
   <div class="container"></div>
 
@@ -41,6 +104,7 @@
   <!-- Config & Engine -->
   <script src="./config.js"></script>
   <script src="./script/main.js"></script>
+  <script src="./script/film.js"></script>
 </body>
 
 </html>

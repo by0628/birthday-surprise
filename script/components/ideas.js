@@ -72,11 +72,19 @@
         }, "+=2");
       }
 
-      // Big letters: stagger in then out
+      // Big letters: fly in scattered from different depths/angles
+      // and assemble — the HUMAN.md letters-engine move.
       if (bigLetters.length) {
         tl.fromTo(bigLetters,
-          { scale: 3, opacity: 0, rotation: 15 },
-          { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: "expo.out", stagger: 0.2 }
+          {
+            scale: 2.6, opacity: 0, rotation: () => (Math.random() - 0.5) * 50,
+            x: () => (Math.random() - 0.5) * 320, y: () => (Math.random() - 0.5) * 220,
+            filter: "blur(10px)",
+          },
+          {
+            scale: 1, opacity: 1, rotation: 0, x: 0, y: 0,
+            filter: "blur(0px)", duration: 0.85, ease: "expo.out", stagger: 0.16,
+          }
         )
         .to(bigLetters, {
           duration: 0.8, scale: 3, opacity: 0, rotation: -15,
