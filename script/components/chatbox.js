@@ -20,7 +20,15 @@
         .join("");
       const btn = div.querySelector(".fake-btn");
       btn.addEventListener("click", () => {
-        if (div._tl && div._tl.paused()) div._tl.play();
+        const tl = div._tl;
+        if (!tl) return;
+        if (tl.paused()) { tl.play(); return; }
+        // Tapped while the poem is still typing: finish the typing
+        // instantly and wait at the pause for a second tap to send.
+        if (div._pauseAt != null && tl.time() < div._pauseAt - 0.05) {
+          tl.seek(div._pauseAt);
+          tl.pause();
+        }
       });
       container.appendChild(div);
       return div;
@@ -41,8 +49,11 @@
       .to(spans, {
         duration: 0.01, visibility: "visible", stagger: 0.05,
       }, "+=0.3")
-      .addPause()
-      .to(el.querySelector(".chatbox-hint"), { duration: 0.3, opacity: 0 })
+      .addPause();
+
+      el._pauseAt = tl.duration();
+
+      tl.to(el.querySelector(".chatbox-hint"), { duration: 0.3, opacity: 0 })
       .to(el.querySelector(".fake-btn"), {
         duration: 0.15, backgroundColor: "rgb(127, 206, 248)", scale: 0.94,
       })

@@ -650,7 +650,7 @@ body {
 #hud-file { cursor: pointer; letter-spacing: .04em; }
 #hud-file::after { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #fc4109; margin-left: 8px; vertical-align: 1px; }
 .hud-crumb { opacity: .85; }
-.hud-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 810; background: rgba(233,237,235,.08); }
+.hud-progress { pointer-events: none; position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 810; background: rgba(233,237,235,.08); }
 #hud-bar { display: block; height: 100%; background: var(--primary, #8fa3b0); transform: scaleX(0); transform-origin: left; }
 #theme-toggle { top: 4.4rem; }
 
@@ -708,7 +708,7 @@ body.reading .container, body.reading .bg { visibility: hidden; }
 .g-name-ch { display: inline-block; will-change: transform, filter; }
 
 /* ── scrollstory chapter ────────────────────────────────────── */
-.section-scrollstory { pointer-events: auto; z-index: 2; }
+.section-scrollstory { pointer-events: none; z-index: 2; }
 .ss-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .ss-star { position: absolute; border-radius: 50%; background: #e9edeb; animation: twinkle 2.8s ease-in-out infinite alternate; }
 .ss-moon { position: absolute; top: 12%; left: 50%; font-size: clamp(2.6rem, 9vw, 4.2rem); filter: drop-shadow(0 0 22px rgba(233,237,235,.35)); }
@@ -720,7 +720,7 @@ body.reading .container, body.reading .bg { visibility: hidden; }
 .ss-w { display: inline-block; opacity: 0; transform: translateY(14px); filter: blur(6px); will-change: transform, opacity, filter; }
 .ss-big { margin-top: 2.2rem; font-size: clamp(2.6rem, 11vw, 5rem); font-weight: 700; color: var(--primary); }
 .ss-big .ss-w { opacity: 0; }
-.ss-ui { position: absolute; left: 0; right: 0; bottom: max(4.5rem, 9dvh); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .8rem; padding: 0 1.5rem; }
+.ss-ui { pointer-events: none; position: absolute; left: 0; right: 0; bottom: max(4.5rem, 9dvh); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .8rem; padding: 0 1.5rem; }
 .ss-hint { font-weight: 300; opacity: .6; font-size: .95rem; transition: opacity .4s; }
 .ss-bar { width: min(300px, 70vw); height: 3px; border-radius: 3px; background: rgba(233,237,235,.14); overflow: hidden; }
 .ss-bar-fill { display: block; height: 100%; background: var(--primary); transform: scaleX(0); transform-origin: left; }

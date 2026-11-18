@@ -152,7 +152,7 @@
         }
       }
       let lastY = null;
-      function onTouchStart(e) { lastY = e.touches[0].clientY; }
+      function onTouchStart(e) { if (!isActive()) { lastY = null; return; } lastY = e.touches[0].clientY; }
       function onTouchMove(e) {
         if (!isActive() || lastY == null) return;
         e.preventDefault();
@@ -164,8 +164,8 @@
 
       window.addEventListener("wheel", onWheel, { passive: false });
       window.addEventListener("keydown", onKey);
-      el.addEventListener("touchstart", onTouchStart, { passive: true });
-      el.addEventListener("touchmove", onTouchMove, { passive: false });
+      window.addEventListener("touchstart", onTouchStart, { passive: true });
+      window.addEventListener("touchmove", onTouchMove, { passive: false });
       btnContinue.addEventListener("click", () => { if (state.current > 0.9) finish(); });
       btnSkip.addEventListener("click", finish);
 
