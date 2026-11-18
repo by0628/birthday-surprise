@@ -44,12 +44,16 @@
     },
 
     animate(tl, el) {
-      // Shorter, less intrusive confetti — scale smaller, fewer repeats
-      tl.to(el.querySelectorAll(".confetti-dot"), {
-        duration: 1, visibility: "visible", opacity: 0,
-        scale: 40, repeat: 2, repeatDelay: 0.8, stagger: 0.15,
-      })
-      .to(el, { duration: 0.3, opacity: 0 });
+      // One gentle bloom, no repeats: each dot swells once and melts
+      // away. (The old version repeated a fade-out 3 times, snapping
+      // back to full opacity between rounds — that snap was the flicker.)
+      const dots = el.querySelectorAll(".confetti-dot");
+      tl.fromTo(dots,
+        { visibility: "visible", opacity: 0, scale: 0.4 },
+        { opacity: 0.5, scale: 15, duration: 1.7, ease: "power2.out", stagger: 0.12 })
+      .to(dots,
+        { opacity: 0, scale: 18, duration: 0.9, ease: "power1.in" }, "-=0.6")
+      .to(el, { duration: 0.2, opacity: 0 });
     },
   };
 })();
