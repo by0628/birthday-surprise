@@ -145,8 +145,9 @@
     if (window.gsap) gsap.to(eggLayer, { opacity: 0, duration: 0.4, onComplete: () => { eggLayer.hidden = true; } });
     else eggLayer.hidden = true;
   }
-  const starsBtn = document.querySelector(".closing-stars-btn");
-  if (starsBtn) starsBtn.addEventListener("click", openEgg);
+  document.addEventListener("click", (e) => {
+    if (e.target && e.target.closest && e.target.closest(".closing-stars-btn")) openEgg();
+  });
 
   // ── Restart (the HUD cake, like HUMAN.md's mug) ───────────────────
   const home = document.getElementById("hud-home");

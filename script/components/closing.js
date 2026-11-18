@@ -22,7 +22,7 @@
     },
 
     animate(tl, el) {
-      tl.fromTo(el.querySelectorAll("p"),
+      tl.fromTo(el.querySelectorAll("p:not(.closing-sign)"),
         { opacity: 0, y: 24, filter: "blur(8px)" },
         { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.0, ease: "power2.out", stagger: 1.2 }
       )
