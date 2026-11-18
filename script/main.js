@@ -124,7 +124,7 @@ async function initSite() {
   // Dynamically load component scripts
   for (const type of types) {
     try {
-      await loadScript(`./script/components/${type}.js?v=1118`);
+      await loadScript(`./script/components/${type}.js?v=1119`);
     } catch (e) {
       console.warn(e.message);
     }
