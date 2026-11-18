@@ -840,3 +840,17 @@ body { font-family: var(--f-serif); }
   color: var(--muted, #8fa3b0); text-decoration: none;
   border-bottom: 1px solid rgba(143, 163, 176, .35); padding-bottom: .18rem;
 }
+
+/* ── Gift reveal: the hand-drawn card ────────────────────────── */
+.gift-card {
+  margin: 0; display: flex; flex-direction: column; align-items: center;
+  gap: 1.1rem; opacity: 0; will-change: transform, opacity;
+}
+.gift-img {
+  width: min(76vw, 330px); aspect-ratio: 1; object-fit: cover; display: block;
+  border-radius: 20px; border: 1px solid rgba(233, 237, 235, .14);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+}
+.gift-card .gift-reveal {
+  font-size: .98rem; color: var(--muted, #8fa3b0); letter-spacing: .05em;
+}
