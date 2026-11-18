@@ -131,7 +131,17 @@ async function initSite() {
     rendered.push({ el, comp, section });
   });
 
-  // SweetAlert music prompt
+  // If the animation library somehow failed to load, fall back to the
+  // plain-text reading version instead of a dead page.
+  if (!window.gsap) { document.body.classList.add("reading"); return; }
+
+  const start = (withMusic) => {
+    if (withMusic && audio) audio.play().catch(() => {});
+    buildTimeline(rendered);
+  };
+
+  // SweetAlert music prompt (optional: if it failed to load, just start)
+  if (!window.Swal) { start(false); return; }
   const isDark = currentMode === "dark";
   Swal.fire({
     title: "要為你放一首歌嗎？",
@@ -142,12 +152,7 @@ async function initSite() {
     cancelButtonText: "不用了",
     background: isDark ? "#1e293b" : "#ffffff",
     color: isDark ? "#f1f5f9" : "#1e293b",
-  }).then((result) => {
-    if (result.isConfirmed && audio) {
-      audio.play().catch(() => {});
-    }
-    buildTimeline(rendered);
-  });
+  }).then((result) => start(result.isConfirmed));
 }
 
 // ── Timeline Builder ─────────────────────────────────────────────
