@@ -48,7 +48,7 @@ function loadScript(src) {
 
 // ── Time Gate — unlocks 2026-11-19 00:00 (Asia/Shanghai) ────────────
 const UNLOCK_AT = new Date("2026-11-19T00:00:00+08:00").getTime();
-const TEST_PREVIEW = false;
+const TEST_PREVIEW = new URLSearchParams(location.search).has("preview");
 
 function fmtRemain(ms) {
   const s = Math.max(0, Math.floor(ms / 1000));
