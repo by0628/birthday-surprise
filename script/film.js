@@ -78,6 +78,76 @@
   if (idxClose) idxClose.addEventListener("click", closeIndex);
   if (indexOverlay) indexOverlay.addEventListener("click", (e) => { if (e.target === indexOverlay) closeIndex(); });
 
+
+  // ── Star egg: after the film, a sky she can light up ───────────
+  const EGG_WORDS = ["平安", "歡喜", "好運", "順遂", "明亮", "如願", "安康", "被愛"];
+  let eggLayer = null, eggLit = 0, eggDone = false;
+  function buildEgg() {
+    if (eggLayer) return eggLayer;
+    eggLayer = document.createElement("div");
+    eggLayer.id = "egg-stars";
+    eggLayer.hidden = true;
+    eggLayer.innerHTML = `
+      <p class="egg-hint">還有一片星空，點一點</p>
+      <button type="button" class="egg-close">← 回去</button>
+      <p class="egg-final">每一顆，都是給你的。</p>`;
+    // Deterministic scatter (same sky every visit)
+    let seed = 20261119;
+    const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+    for (let i = 0; i < 26; i++) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "egg-star";
+      const size = 3 + rnd() * 3.5;
+      b.style.width = b.style.height = size.toFixed(1) + "px";
+      b.style.left = (5 + rnd() * 90).toFixed(1) + "%";
+      b.style.top = (10 + rnd() * 78).toFixed(1) + "%";
+      b.addEventListener("click", (ev) => { ev.stopPropagation(); lightStar(b); });
+      eggLayer.appendChild(b);
+    }
+    eggLayer.addEventListener("click", (e) => { if (e.target === eggLayer) closeEgg(); });
+    eggLayer.querySelector(".egg-close").addEventListener("click", closeEgg);
+    document.body.appendChild(eggLayer);
+    return eggLayer;
+  }
+  function lightStar(b) {
+    if (b.classList.contains("is-lit") || eggDone) return;
+    b.classList.add("is-lit");
+    const word = EGG_WORDS[Math.min(eggLit, EGG_WORDS.length - 1)];
+    eggLit++;
+    const w = document.createElement("span");
+    w.className = "egg-word";
+    w.textContent = word;
+    w.style.left = b.style.left;
+    w.style.top = b.style.top;
+    eggLayer.appendChild(w);
+    if (window.gsap) {
+      gsap.fromTo(b, { scale: 0.4 }, { scale: 1, duration: 0.7, ease: "elastic.out(1, 0.45)" });
+      gsap.fromTo(w, { opacity: 0, y: 6, scale: 0.8 },
+        { opacity: 1, y: -26, scale: 1, duration: 0.9, ease: "power2.out" });
+      gsap.to(w, { opacity: 0, y: -44, duration: 0.8, delay: 1.5, onComplete: () => w.remove() });
+    } else { setTimeout(() => w.remove(), 2200); }
+    if (eggLit >= EGG_WORDS.length && !eggDone) {
+      eggDone = true;
+      const fin = eggLayer.querySelector(".egg-final");
+      if (window.gsap) gsap.fromTo(fin, { opacity: 0, y: 14 }, { opacity: 0.9, y: 0, duration: 1.4, delay: 0.9, ease: "power2.out" });
+      else fin.style.opacity = 0.9;
+    }
+  }
+  function openEgg() {
+    buildEgg();
+    eggLayer.hidden = false;
+    if (window.gsap) gsap.fromTo(eggLayer, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" });
+    else eggLayer.style.opacity = 1;
+  }
+  function closeEgg() {
+    if (!eggLayer) return;
+    if (window.gsap) gsap.to(eggLayer, { opacity: 0, duration: 0.4, onComplete: () => { eggLayer.hidden = true; } });
+    else eggLayer.hidden = true;
+  }
+  const starsBtn = document.querySelector(".closing-stars-btn");
+  if (starsBtn) starsBtn.addEventListener("click", openEgg);
+
   // ── Restart (the HUD cake, like HUMAN.md's mug) ───────────────────
   const home = document.getElementById("hud-home");
   if (home) home.addEventListener("click", () => {

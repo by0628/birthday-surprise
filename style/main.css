@@ -854,3 +854,62 @@ body { font-family: var(--f-serif); }
 .gift-card .gift-reveal {
   font-size: .98rem; color: var(--muted, #8fa3b0); letter-spacing: .05em;
 }
+
+/* ── Closing signature + star-egg door ───────────────────────── */
+.closing-sign {
+  margin-top: 1.5rem; font-family: var(--font-mono);
+  font-size: .76rem; letter-spacing: .18em; color: var(--muted, #8fa3b0);
+  opacity: 0;
+}
+.closing-stars-btn {
+  margin-top: 1.1rem; background: none; border: none; cursor: pointer;
+  font-family: var(--font-mono); font-size: .74rem; letter-spacing: .16em;
+  color: var(--muted, #8fa3b0); opacity: 0; pointer-events: none; padding: .3rem .6rem;
+}
+.closing-stars-btn:hover { color: var(--ink, #e9edeb); }
+.closing-music { margin-top: 1.1rem; }
+
+/* ── Star egg layer ──────────────────────────────────────────── */
+#egg-stars {
+  position: fixed; inset: 0; z-index: 55;
+  background: radial-gradient(120% 90% at 50% 0%, #141a21 0%, #0b0d10 62%);
+  opacity: 0;
+}
+#egg-stars[hidden] { display: none; }
+.egg-hint {
+  position: absolute; top: max(4.2rem, 9dvh); left: 0; right: 0; text-align: center;
+  font-family: var(--font-serif); font-size: 1rem; letter-spacing: .22em;
+  color: var(--muted, #8fa3b0); pointer-events: none;
+}
+.egg-close {
+  position: absolute; left: 1rem; bottom: max(1.2rem, 3dvh);
+  background: none; border: 1px solid rgba(233, 237, 235, .18); border-radius: 999px;
+  color: var(--muted, #8fa3b0); font-family: var(--font-mono); font-size: .72rem;
+  letter-spacing: .14em; padding: .42rem .9rem; cursor: pointer;
+}
+.egg-star {
+  position: absolute; border: none; border-radius: 50%; cursor: pointer;
+  background: #dfe8ee; opacity: .32; padding: 0;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px 1px rgba(223, 232, 238, .25);
+  /* generous touch target without visible bulk */
+  background-clip: padding-box;
+}
+.egg-star::after {
+  content: ""; position: absolute; inset: -14px; border-radius: 50%;
+}
+.egg-star.is-lit {
+  opacity: 1; background: #ffd9a0;
+  box-shadow: 0 0 18px 5px rgba(255, 201, 120, .55), 0 0 44px 14px rgba(255, 201, 120, .22);
+}
+.egg-word {
+  position: absolute; transform: translate(-50%, -130%);
+  font-family: var(--font-serif); font-size: 1.02rem; letter-spacing: .3em;
+  color: #ffe3b3; pointer-events: none; white-space: nowrap;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .6);
+}
+.egg-final {
+  position: absolute; left: 0; right: 0; bottom: max(5.2rem, 13dvh); text-align: center;
+  font-family: var(--font-serif); font-size: 1.18rem; letter-spacing: .26em;
+  color: var(--ink, #e9edeb); opacity: 0; pointer-events: none;
+}

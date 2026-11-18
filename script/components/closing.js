@@ -13,6 +13,8 @@
           section.replayText || "Or click, if you want to watch it again."
         }</p>
         <p class="last-smile">:)</p>
+        <p class="closing-sign">——Aurevny · 2026.11.19</p>
+        <button type="button" class="closing-stars-btn">還有一片星空，點一點 ✦</button>
         <a class="closing-music" href="https://by0628.github.io/Music/" target="_blank" rel="noopener">歌還在放 · 去霧中來信繼續聽 →</a>
       `;
       container.appendChild(div);
@@ -29,6 +31,14 @@
       .to(el.querySelector(".last-smile"), {
         duration: 0.5, rotation: 90,
       }, "+=1")
+      // Signature and the star-egg door fade in with the smile.
+      .fromTo(el.querySelector(".closing-sign"),
+        { opacity: 0, y: 8 },
+        { opacity: 0.5, y: 0, duration: 1.0, ease: "power2.out" }, "-=0.3")
+      .set(el.querySelector(".closing-stars-btn"), { pointerEvents: "auto" })
+      .fromTo(el.querySelector(".closing-stars-btn"),
+        { opacity: 0, y: 8 },
+        { opacity: 0.6, y: 0, duration: 1.0, ease: "power2.out" }, "-=0.6")
       // Last of all, barely there: the door to the music site.
       .set(el.querySelector(".closing-music"), { pointerEvents: "auto" })
       .fromTo(el.querySelector(".closing-music"),
