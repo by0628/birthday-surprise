@@ -13,6 +13,7 @@
           section.replayText || "Or click, if you want to watch it again."
         }</p>
         <p class="last-smile">:)</p>
+        <a class="closing-music" href="https://by0628.github.io/Music/" target="_blank" rel="noopener">歌還在放 · 去霧中來信繼續聽 →</a>
       `;
       container.appendChild(div);
       return div;
@@ -27,7 +28,12 @@
       .set(el.querySelector("#replay"), { pointerEvents: "auto" })
       .to(el.querySelector(".last-smile"), {
         duration: 0.5, rotation: 90,
-      }, "+=1");
+      }, "+=1")
+      // Last of all, barely there: the door to the music site.
+      .set(el.querySelector(".closing-music"), { pointerEvents: "auto" })
+      .fromTo(el.querySelector(".closing-music"),
+        { opacity: 0, y: 10 },
+        { opacity: 0.55, y: 0, duration: 1.4, ease: "power2.out" }, "-=0.2");
     },
   };
 })();

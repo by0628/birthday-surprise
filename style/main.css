@@ -824,3 +824,19 @@ body { font-family: var(--f-serif); }
 .swal2-popup { border: 1px solid rgba(233, 237, 235, 0.14) !important; box-shadow: none !important; }
 .swal2-title { font-family: var(--f-serif) !important; font-weight: 400 !important; letter-spacing: 0.04em; }
 .swal2-styled { border-radius: 999px !important; letter-spacing: 0.1em; font-weight: 400 !important; }
+
+/* ── Closing music link: a whisper, not a billboard ──────────── */
+.closing-music {
+  display: inline-block; margin-top: 2.6rem;
+  font-family: var(--font-mono); font-size: .74rem; letter-spacing: .16em;
+  color: var(--muted, #8fa3b0); text-decoration: none;
+  border-bottom: 1px solid rgba(143, 163, 176, .35); padding-bottom: .18rem;
+  opacity: 0; pointer-events: none;
+}
+.closing-music:hover { color: var(--ink, #e9edeb); }
+.read-music { text-align: center; margin-top: 2.4rem !important; }
+.read-music a {
+  font-family: var(--font-mono); font-size: .78rem; letter-spacing: .14em;
+  color: var(--muted, #8fa3b0); text-decoration: none;
+  border-bottom: 1px solid rgba(143, 163, 176, .35); padding-bottom: .18rem;
+}
