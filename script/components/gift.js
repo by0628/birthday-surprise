@@ -6,7 +6,7 @@
       const div = document.createElement("div");
       div.className = "section section-gift";
       div.innerHTML = `
-        <div class="gift-anim"><div class="gift-box">🎁</div></div>
+        <div class="gift-anim"><div class="gift-box"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="14" y="28" width="36" height="26"/><rect x="10" y="18" width="44" height="10"/><line x1="32" y1="18" x2="32" y2="54"/><path d="M32 18c-6 0-9-3-9-6 0-2 2-4 4-4 3 0 5 4 5 10zm0 0c6 0 9-3 9-6 0-2-2-4-4-4-3 0-5 4-5 10z"/></svg></div></div>
         <p class="gift-hint">${section.hint || ""}</p>
         <p class="gift-sub">${section.sub || ""}</p>
         <p class="gift-reveal">${section.reveal || ""}</p>

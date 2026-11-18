@@ -55,7 +55,7 @@
 
       tl.to(el.querySelector(".chatbox-hint"), { duration: 0.3, opacity: 0 })
       .to(el.querySelector(".fake-btn"), {
-        duration: 0.15, backgroundColor: "rgb(127, 206, 248)", scale: 0.94,
+        duration: 0.15, backgroundColor: "rgba(143, 163, 176, 0.85)", scale: 0.94,
       })
       .to(el.querySelector(".text-box"), {
         duration: 0.7, scale: 0.2, opacity: 0, y: -150, ease: "power2.in",

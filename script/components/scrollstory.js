@@ -33,7 +33,7 @@
       }).join("");
 
       div.innerHTML = `
-        <div class="ss-layer ss-far">${stars}<span class="ss-moon">🌙</span></div>
+        <div class="ss-layer ss-far">${stars}<span class="ss-moon"></span></div>
         <div class="ss-layer ss-near"><span class="ss-hill ss-hill--l"></span><span class="ss-hill ss-hill--r"></span></div>
         <div class="ss-stage">
           ${(section.lines || []).map((l) => `<p class="ss-line">${splitChars(l)}</p>`).join("")}

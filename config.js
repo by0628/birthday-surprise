@@ -19,7 +19,7 @@ const CONFIG = {
 
   sections: [
     { type: "greeting", title: "嗨", subtitle: "今天，是屬於你的日子。" },
-    { type: "countdown", from: 3, goText: "🎉" },
+    { type: "countdown", from: 3, goText: "✦" },
     { type: "announcement", text: "今天，是你的生日。" },
     {
       type: "chatbox",

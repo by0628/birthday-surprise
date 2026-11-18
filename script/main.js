@@ -20,14 +20,14 @@ function applyTheme(mode) {
 
   // Update toggle icon
   const btn = document.getElementById("theme-toggle");
-  if (btn) btn.textContent = mode === "dark" ? "☀️" : "🌙";
+  if (btn) btn.textContent = "◐";
 }
 
 function createThemeToggle() {
   const btn = document.createElement("button");
   btn.id = "theme-toggle";
   btn.title = "Toggle dark/light mode";
-  btn.textContent = currentMode === "dark" ? "☀️" : "🌙";
+  btn.textContent = "◐";
   btn.addEventListener("click", () => {
     applyTheme(currentMode === "dark" ? "light" : "dark");
   });
@@ -135,7 +135,6 @@ async function initSite() {
   const isDark = currentMode === "dark";
   Swal.fire({
     title: "要為你放一首歌嗎？",
-    icon: "question",
     showCancelButton: true,
     confirmButtonColor: CONFIG.colors.accent || "#3085d6",
     cancelButtonColor: "#888",
@@ -177,16 +176,6 @@ function buildTimeline(rendered) {
 
     // Chapter label (HUD crumb, progress, index seek)
     tl.addLabel("ch" + i);
-
-    // Mask wipe between stage chapters (HUMAN.md-style mask transition)
-    if (wipe && !isOverlay && prevWasStage) {
-      tl.fromTo(wipe,
-        { clipPath: "inset(0 0 100% 0)", visibility: "visible" },
-        { clipPath: "inset(0 0 0% 0)", duration: 0.2, ease: "power2.inOut" })
-        .to(wipe, {
-          clipPath: "inset(100% 0 0 0)", duration: 0.2, ease: "power2.inOut",
-        }, "+=0.03");
-    }
 
     // Animate
     comp.animate(tl, el, CONFIG);
