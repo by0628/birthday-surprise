@@ -1,9 +1,9 @@
 (function () {
   window.Components = window.Components || {};
 
-  const ENTER = { opacity: 0, y: -20, rotationX: 5, skewX: "15deg" };
-  const LEAVE = { opacity: 0, y: 20, rotationY: 5, skewX: "-15deg" };
-  const VISIBLE = { opacity: 1 };
+  const ENTER = { opacity: 0, y: 26, filter: "blur(8px)" };
+  const ENTERED = { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.9, ease: "power2.out" };
+  const LEAVE = { opacity: 0, y: -18, filter: "blur(6px)", duration: 0.7, ease: "power2.in" };
 
   window.Components.ideas = {
     render(container, section) {
@@ -41,25 +41,25 @@
 
       // Regular lines: enter → wait → leave
       regularLines.forEach((line) => {
-        tl.fromTo(line, { ...ENTER }, { opacity: 1, y: 0, rotationX: 0, skewX: "0deg", duration: 0.7 });
+        tl.fromTo(line, { ...ENTER }, { ...ENTERED });
 
         const strong = line.querySelector("strong");
         if (strong) {
           tl.to(strong, {
-            duration: 0.5, scale: 1.2, x: 10,
+            duration: 0.5, scale: 1.12, x: 6,
             backgroundColor: "var(--accent)", color: "#fff",
           });
         }
 
-        tl.to(line, { duration: 0.7, ...LEAVE }, "+=2.5");
+        tl.to(line, { ...LEAVE }, "+=2.5");
       });
 
       // Special last line: dramatic entrance
       if (specialLine) {
         tl.fromTo(specialLine,
-          { rotationX: 15, rotationZ: -10, skewY: "-5deg", y: 50, z: 10, opacity: 0 },
-          { rotationX: 0, rotationZ: 0, skewY: "0deg", y: 0, z: 0, opacity: 1, duration: 0.7 },
-          "+=1.5"
+          { opacity: 0, scale: 0.92, y: 24, filter: "blur(10px)" },
+          { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", duration: 1.0, ease: "power2.out" },
+          "+=1.2"
         );
 
         const span = specialLine.querySelector("span");
@@ -68,7 +68,7 @@
         }
 
         tl.to(specialLine, {
-          duration: 0.7, scale: 0.2, opacity: 0,
+          duration: 0.7, scale: 0.94, opacity: 0, filter: "blur(6px)", ease: "power2.in",
         }, "+=2");
       }
 

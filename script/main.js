@@ -45,8 +45,50 @@ function loadScript(src) {
   });
 }
 
+
+// ── Time Gate — unlocks 2026-11-19 00:00 (Asia/Shanghai) ────────────
+const UNLOCK_AT = new Date("2026-11-19T00:00:00+08:00").getTime();
+const TEST_PREVIEW = new URLSearchParams(location.search).has("preview");
+
+function fmtRemain(ms) {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  const d = Math.floor(s / 86400);
+  const h = Math.floor((s % 86400) / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  const p = (n) => String(n).padStart(2, "0");
+  return (d > 0 ? d + " 天 " : "") + p(h) + ":" + p(m) + ":" + p(sec);
+}
+
+function showLock() {
+  const lock = document.getElementById("lock-screen");
+  const count = document.getElementById("lock-count");
+  if (!lock) return;
+  lock.hidden = false;
+  const tick = () => {
+    const remain = UNLOCK_AT - Date.now();
+    if (remain <= 0) {
+      clearInterval(timer);
+      lock.hidden = true;
+      initSite();
+      return;
+    }
+    if (count) count.textContent = fmtRemain(remain);
+  };
+  const timer = setInterval(tick, 500);
+  tick();
+}
+
 // ── Main ─────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!TEST_PREVIEW && Date.now() < UNLOCK_AT) {
+    showLock();
+    return;
+  }
+  await initSite();
+});
+
+async function initSite() {
   applyTheme(currentMode);
   createThemeToggle();
 
@@ -101,7 +143,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     buildTimeline(rendered);
   });
-});
+}
 
 // ── Timeline Builder ─────────────────────────────────────────────
 function buildTimeline(rendered) {

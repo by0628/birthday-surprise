@@ -17,18 +17,21 @@
     },
 
     animate(tl, el) {
-      tl.from(el.querySelector(".greeting-title"), {
-        duration: 0.7, opacity: 0, y: 10,
-      })
-      .from(el.querySelector(".greeting-subtitle"), {
-        duration: 0.4, opacity: 0, y: 10,
-      })
+      tl.fromTo(el.querySelector(".greeting-title"),
+        { opacity: 0, y: 26, filter: "blur(10px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.1, ease: "power2.out" }
+      )
+      .fromTo(el.querySelector(".greeting-subtitle"),
+        { opacity: 0, y: 18, filter: "blur(8px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.9, ease: "power2.out" }, "-=0.6"
+      )
       .to(el.querySelector(".greeting-title"), {
-        duration: 0.7, opacity: 0, y: 10,
+        duration: 0.9, opacity: 0, y: -18, filter: "blur(8px)", ease: "power2.in",
       }, "+=3.5")
       .to(el.querySelector(".greeting-subtitle"), {
-        duration: 0.7, opacity: 0, y: 10,
-      }, "-=1");
+        duration: 0.9, opacity: 0, y: -14, filter: "blur(8px)", ease: "power2.in",
+      }, "-=0.65");
     },
+
   };
 })();

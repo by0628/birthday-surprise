@@ -26,10 +26,10 @@
 
       nums.forEach((num) => {
         tl.fromTo(num,
-          { scale: 0, opacity: 0, rotation: -180 },
-          { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(1.7)" }
+          { scale: 0.4, opacity: 0, filter: "blur(10px)" },
+          { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.out" }
         )
-        .to(num, { scale: 2, opacity: 0, duration: 0.4 }, "+=0.8");
+        .to(num, { scale: 1.7, opacity: 0, filter: "blur(8px)", duration: 0.45, ease: "power2.in" }, "+=0.8");
       });
 
       tl.fromTo(go,

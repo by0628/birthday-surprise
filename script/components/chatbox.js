@@ -10,36 +10,45 @@
           <p class="hbd-chatbox"></p>
           <p class="fake-btn">${section.buttonText || "Send"}</p>
         </div>
+        <p class="chatbox-hint">${section.hint || ""}</p>
       `;
-      // Split message into individual character spans for typing animation
       const chatbox = div.querySelector(".hbd-chatbox");
       const msg = section.message || "Happy Birthday!";
       chatbox.innerHTML = msg
         .split("")
         .map((ch) => (ch === "\n" ? "<br>" : `<span>${ch}</span>`))
         .join("");
-
+      const btn = div.querySelector(".fake-btn");
+      btn.addEventListener("click", () => {
+        if (div._tl && div._tl.paused()) div._tl.play();
+      });
       container.appendChild(div);
       return div;
     },
 
     animate(tl, el) {
+      el._tl = tl;
       const spans = el.querySelectorAll(".hbd-chatbox span");
       tl.from(el.querySelector(".text-box"), {
-        duration: 0.7, scale: 0.2, opacity: 0,
+        duration: 0.9, opacity: 0, y: 24, scale: 0.96, ease: "power2.out",
       })
       .from(el.querySelector(".fake-btn"), {
-        duration: 0.3, scale: 0.2, opacity: 0,
+        duration: 0.5, opacity: 0, scale: 0.6, ease: "power2.out",
       })
+      .from(el.querySelector(".chatbox-hint"), {
+        duration: 0.5, opacity: 0, y: 8,
+      }, "-=0.2")
       .to(spans, {
-        duration: 1.5, visibility: "visible", stagger: 0.05,
-      })
+        duration: 0.01, visibility: "visible", stagger: 0.05,
+      }, "+=0.3")
+      .addPause()
+      .to(el.querySelector(".chatbox-hint"), { duration: 0.3, opacity: 0 })
       .to(el.querySelector(".fake-btn"), {
-        duration: 0.1, backgroundColor: "rgb(127, 206, 248)",
-      }, "+=4")
+        duration: 0.15, backgroundColor: "rgb(127, 206, 248)", scale: 0.94,
+      })
       .to(el.querySelector(".text-box"), {
-        duration: 0.5, scale: 0.2, opacity: 0, y: -150,
-      }, "+=1");
+        duration: 0.7, scale: 0.2, opacity: 0, y: -150, ease: "power2.in",
+      }, "+=0.35");
     },
   };
 })();

@@ -19,10 +19,10 @@
     },
 
     animate(tl, el) {
-      const ideaIn = { opacity: 0, y: -20, rotationX: 5, skewX: "15deg" };
-      tl.from(el.querySelectorAll("p"), {
-        duration: 1, ...ideaIn, stagger: 1.2,
-      })
+      tl.fromTo(el.querySelectorAll("p"),
+        { opacity: 0, y: 24, filter: "blur(8px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.0, ease: "power2.out", stagger: 1.2 }
+      )
       // Enable replay button only after it becomes visible
       .set(el.querySelector("#replay"), { pointerEvents: "auto" })
       .to(el.querySelector(".last-smile"), {
