@@ -16,7 +16,7 @@
       const msg = section.message || "Happy Birthday!";
       chatbox.innerHTML = msg
         .split("")
-        .map((ch) => `<span>${ch}</span>`)
+        .map((ch) => (ch === "\n" ? "<br>" : `<span>${ch}</span>`))
         .join("");
 
       container.appendChild(div);

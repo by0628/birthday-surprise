@@ -1,93 +1,67 @@
 /**
  * ✨ EDIT THIS FILE to customize the birthday greeting! ✨
- *
- * This is the ONLY file you need to modify.
- * No need to touch HTML, CSS, or any other JavaScript files.
- *
- * AVAILABLE SECTION TYPES:
- *   "greeting"      → Opening greeting with recipient's name
- *   "announcement"  → Birthday announcement text
- *   "chatbox"       → Chat message with typing animation
- *   "ideas"         → Sequential text reveals, one by one
- *   "quote"         → Styled quote card with optional author
- *   "countdown"     → Animated 3-2-1 countdown
- *   "stars"         → Twinkling stars background
- *   "fireworks"     → Colorful firework sparks burst
- *   "balloons"      → Floating balloon animation
- *   "profile"       → Profile photo with birthday wish
- *   "confetti"      → Confetti burst animation
- *   "closing"       → Closing message with replay button
- *
- * HOW TO USE:
- *   REMOVE a section  → Delete its object from the sections array
- *   DUPLICATE          → Copy-paste any section object
- *   REORDER            → Move the section object up/down in the array
- *   EDIT TEXT          → Change the string values
+ * Customized for 齊銳欣 (QRX) — 繁體詩意版
  */
 
 const CONFIG = {
   // ── Recipient Info ────────────────────────────────────────────
-  name: "Irene",
-  photo: "./img/irene.jpg",       // Place your photo in the img/ folder
-  music: "./music/hbd.mpeg",      // Place your music in the music/ folder
+  name: "齊銳欣",
+  photo: "",                        // No photo by request
+  music: "./music/hbd.mpeg",
 
-  // ── Theme Colors ──────────────────────────────────────────────
-  // A toggle button lets the viewer switch between dark & light mode.
+  // ── Theme Colors — Aurevny mist palette (from 霧中來信) ──────
   colors: {
-    primary: "#f472b6",           // Main accent color (rose pink)
-    accent: "#60a5fa",            // Secondary accent color (sky blue)
+    primary: "#8fa3b0",           // Mist blue
+    accent: "#7d8b96",            // Fog slate
     dark: {
-      background: "#0f172a",      // Slate 900
-      text: "#f1f5f9",            // Slate 100
+      background: "#101216",
+      text: "#e9edeb",
     },
     light: {
-      background: "#fafaf9",      // Stone 50
-      text: "#1e293b",            // Slate 800
+      background: "#e9edeb",
+      text: "#2e353a",
     },
   },
 
-  // ── Default Color Mode ────────────────────────────────────────
-  // Options: "dark" or "light"
   defaultMode: "dark",
 
   // ── Sections ──────────────────────────────────────────────────
-  // Add, remove, duplicate, or reorder as you wish!
   sections: [
     {
       type: "greeting",
-      title: "Hi",
-      subtitle: "I really like your name btw!",
+      title: "嗨",
+      subtitle: "今天，是屬於你的日子。",
     },
     {
       type: "countdown",
-      from: 3,                    // Countdown from this number
-      goText: "🎉",              // Text shown after countdown ends
+      from: 3,
+      goText: "🎉",
     },
     {
       type: "announcement",
-      text: "It's your birthday!! :D",
+      text: "今天，是你的生日。",
     },
     {
       type: "chatbox",
       message:
-        "Happy birthday to youu!! Wishing you a wonderful year ahead filled with joy, love, and endless happiness!",
-      buttonText: "Send",
+        "生日快樂。\n願新的一歲裡，\n開心像晨光一樣多一點，\n煩惱像薄霧一樣少一點。\n那些你悄悄想要的，\n不必急著追，\n也終會在某個不經意的轉彎處，\n慢慢靠近你。",
+      buttonText: "送出",
     },
     {
       type: "ideas",
       lines: [
-        "That's what I was going to do.",
-        "But then I stopped.",
-        "I realised, I wanted to do something <strong>special</strong>.",
-        "Because,",
-        "You are Special <span>:)</span>",
+        "我原本想，",
+        "只說一句生日快樂就好。",
+        "可是話到了嘴邊，又停住了。",
+        "總想著，要給你一點<strong>特別</strong>的。",
+        "因為——",
+        "你本就是，特別的那一個 <span>✦</span>",
       ],
-      bigLetters: "SO",
+      bigLetters: "QRX",
     },
     {
       type: "quote",
-      text: "The more you praise and celebrate your life, the more there is in life to celebrate.",
-      author: "Oprah Winfrey",
+      text: "願歲月溫柔待你，願你眼裡，永遠有光。",
     },
     {
       type: "stars",
@@ -96,11 +70,6 @@ const CONFIG = {
     {
       type: "balloons",
       count: 25,
-    },
-    {
-      type: "profile",
-      wishTitle: "Happy Birthday!",
-      wishText: "May the js.prototypes always be with you! ;)",
     },
     {
       type: "fireworks",
@@ -112,8 +81,8 @@ const CONFIG = {
     },
     {
       type: "closing",
-      text: "Okay, now come back and tell me if you liked it.",
-      replayText: "Or click, if you want to watch it again.",
+      text: "好了，回去告訴我——這個小驚喜，你喜不喜歡。",
+      replayText: "若想再看一遍，點這裡。",
     },
   ],
 };

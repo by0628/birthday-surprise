@@ -86,13 +86,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   // SweetAlert music prompt
   const isDark = currentMode === "dark";
   Swal.fire({
-    title: "Play music in the background?",
+    title: "要為你放一首歌嗎？",
     icon: "question",
     showCancelButton: true,
     confirmButtonColor: CONFIG.colors.accent || "#3085d6",
     cancelButtonColor: "#888",
-    confirmButtonText: "Yes!",
-    cancelButtonText: "No",
+    confirmButtonText: "好啊",
+    cancelButtonText: "不用了",
     background: isDark ? "#1e293b" : "#ffffff",
     color: isDark ? "#f1f5f9" : "#1e293b",
   }).then((result) => {
