@@ -98,11 +98,24 @@ async function initSite() {
   applyTheme(currentMode);
   createThemeToggle();
 
-  // Set music source
+  // Set music source(s): an array rotates — each track hands over to
+  // the next when it ends, looping back to the first.
   const audio = document.querySelector(".song");
   if (audio && CONFIG.music) {
-    audio.querySelector("source").src = CONFIG.music;
-    audio.load();
+    const tracks = Array.isArray(CONFIG.music) ? CONFIG.music : [CONFIG.music];
+    let trackIdx = 0;
+    const setTrack = (i) => {
+      audio.querySelector("source").src = tracks[i];
+      audio.load();
+    };
+    setTrack(0);
+    if (tracks.length > 1) {
+      audio.addEventListener("ended", () => {
+        trackIdx = (trackIdx + 1) % tracks.length;
+        setTrack(trackIdx);
+        audio.play().catch(() => {});
+      });
+    }
   }
 
   // Determine unique component types

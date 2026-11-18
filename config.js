@@ -6,7 +6,7 @@
 const CONFIG = {
   name: "齐锐欣",
   photo: "",
-  music: "./music/hbd.mpeg",
+  music: ["./music/hbd.mpeg", "./music/hbd2.mpeg"],
 
   colors: {
     primary: "#8fa3b0",
